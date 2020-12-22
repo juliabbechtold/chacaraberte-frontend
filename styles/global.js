@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import "../node_modules/hamburgers/dist/hamburgers.css";
-import "../node_modules/antd/es/notification/style/css";
-import "../node_modules/antd/es/carousel/style/css";
+import "antd/dist/antd.css";
 
 const GlobalStyle = createGlobalStyle`
   html,
