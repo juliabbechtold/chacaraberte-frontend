@@ -1,12 +1,12 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import Head from "next/head";
 
 import { Container } from "../styles/home.js";
 
 export default function Home() {
   return (
     <>
-      <Helmet>
+      <Head>
         <title>
           Agência Ade! Publicidade e Propaganda em Ponta Grossa - PR
         </title>
@@ -22,7 +22,7 @@ export default function Home() {
           property="og:image"
           content={process.env.PUBLIC_URL + "/screenshot.png"}
         />
-      </Helmet>
+      </Head>
       <Container>
         <img src="/assets/logo.svg" width="200px" alt="Agência Ade!" />
       </Container>
