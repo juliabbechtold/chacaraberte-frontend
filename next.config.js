@@ -25,6 +25,6 @@ module.exports = withPlugins(plugins, nextConfig);
 module.exports = {
   images: {
     deviceSizes: [320, 450, 640, 750, 828, 1080, 1200, 1440, 1600, 1920],
-    domains: ["projetos.agenciaade.com.br"],
+    domains: ["projetos.agenciaade.com.br", "agenciaade.com.br"],
   },
 };

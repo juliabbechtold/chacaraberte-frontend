@@ -22,7 +22,7 @@ export default class MyApp extends App {
               __html: `window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments)}
     gtag('js', new Date());
-    gtag('config', 'UA-000000000-1');`,
+    gtag('config', 'UA-180421237-2');`,
             }}
           />
         </Head>
