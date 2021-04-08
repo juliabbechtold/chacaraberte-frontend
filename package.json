@@ -25,6 +25,7 @@
     "react-icons": "^4.1.0",
     "react-input-mask": "^2.0.4",
     "styled-components": "^5.2.1",
+    "use-sound": "^2.0.1",
     "yup": "^0.32.8"
   }
 }
