@@ -30,14 +30,6 @@ export default function Header() {
   return (
     <>
       <Navbar isOpen={openMenu} className={fixedMenu ? "fixed" : ""}>
-        <a
-          className="visita"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://api.whatsapp.com/send?phone=5542998178063&text=Ol%C3%A1%2C%20gostaria%20de%20marcar%20uma%20visita%20para%20o%20dia%20..."
-        >
-          AGENDE SUA VISITA
-        </a>
         <div>
           <button
             className="sound"

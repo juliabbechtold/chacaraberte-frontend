@@ -122,8 +122,11 @@ export default function Contato() {
             </div>
           </div>
         </div>
+        <div className="footer-folha">
+          <Image src="/assets/img/footer-folha.svg" width="807" height="776" />
+        </div>
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }

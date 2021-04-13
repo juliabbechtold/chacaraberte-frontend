@@ -5,6 +5,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  .folha-detail {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 `;
 
 export const Banner = styled.div`
@@ -24,6 +31,48 @@ export const Banner = styled.div`
     min-height: unset;
     height: fit-content;
     padding: 100px 10px 140px 10px;
+  }
+
+  .visita {
+    position: absolute;
+    top: 55px;
+    left: 15%;
+    z-index: 8;
+    font-size: 25px;
+    line-height: 33px;
+    color: #fff;
+    font-family: "Brandon Grotesque";
+
+    @media (max-width: 1440px) {
+      font-size: 20px;
+      line-height: 28px;
+      left: 10%;
+    }
+
+    @media (max-width: 950px) {
+      left: 20px;
+      top: 20px;
+    }
+
+    @media (max-width: 750px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    ::after {
+      content: "";
+      position: absolute;
+      width: 60%;
+      bottom: -8px;
+      right: -5px;
+      background-color: #fff;
+      height: 4px;
+      transition: all ease 0.5s;
+    }
+
+    :hover::after {
+      width: calc(100% + 10px);
+    }
   }
 
   .bg {
@@ -730,6 +779,7 @@ export const Eventos = styled.div`
       @media (max-width: 450px) {
         width: 280px;
         height: 250px;
+        right: -10px;
       }
 
       @media (max-width: 360px) {

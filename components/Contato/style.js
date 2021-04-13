@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   width: 100%;
+  position: relative;
 
   .banner {
     width: 100%;
@@ -383,6 +384,8 @@ export const Container = styled.section`
     justify-content: space-between;
     width: 70%;
     margin: 250px auto 100px auto;
+    position: relative;
+    z-index: 1;
 
     @media (max-width: 1440px) {
       width: 80%;
@@ -530,6 +533,17 @@ export const Container = styled.section`
           height: 20px;
         }
       }
+    }
+  }
+
+  .footer-folha {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+
+    @media (max-width: 1440px) {
+      max-width: 600px;
     }
   }
 `;

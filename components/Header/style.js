@@ -3,64 +3,20 @@ import styled from "styled-components";
 export const Navbar = styled.header`
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.isOpen ? "flex-end" : "space-between")};
-
-  width: 70%;
+  justify-content: flex-end;
+  width: fit-content;
   position: absolute;
   z-index: 10;
   margin-top: 50px;
-  left: 15%;
+  right: 15%;
 
   @media (max-width: 1440px) {
-    width: 80%;
-    left: 10%;
+    right: 10%;
   }
 
   @media (max-width: 950px) {
-    width: calc(100% - 40px);
-    left: 20px;
+    right: 20px;
     margin-top: 20px;
-  }
-
-  .visita {
-    display: ${(props) => (props.isOpen ? "none" : "flex")};
-  }
-
-  a {
-    font-size: 25px;
-    line-height: 33px;
-    color: #fff;
-    font-family: "Brandon Grotesque";
-    position: relative;
-
-    @media (max-width: 1440px) {
-      font-size: 20px;
-      line-height: 28px;
-    }
-
-    @media (max-width: 750px) {
-      font-size: 16px;
-      line-height: 24px;
-    }
-
-    @media (max-width: 500px) {
-      display: none;
-    }
-
-    ::after {
-      content: "";
-      position: absolute;
-      width: 60%;
-      bottom: -8px;
-      right: -5px;
-      background-color: #fff;
-      height: 4px;
-      transition: all ease 0.5s;
-    }
-
-    :hover::after {
-      width: calc(100% + 10px);
-    }
   }
 
   > div {

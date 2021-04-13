@@ -39,7 +39,18 @@ export default function Home() {
       </Head>
       <Header />
       <Container>
+        <div className="folha-detail">
+          <Image src="/assets/img/eventos-folha.svg" width="271" height="740" />
+        </div>
         <Banner>
+          <a
+            className="visita"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://api.whatsapp.com/send?phone=5542998178063&text=Ol%C3%A1%2C%20gostaria%20de%20marcar%20uma%20visita%20para%20o%20dia%20..."
+          >
+            AGENDE SUA VISITA
+          </a>
           <div className="bg" />
           <div className="img">
             <Image src="/assets/img/banner.jpg" width="1200" height="800" />

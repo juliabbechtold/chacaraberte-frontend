@@ -28,6 +28,8 @@ export const Container = styled.footer`
     margin: 0;
     font-family: "Futura";
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   svg {
