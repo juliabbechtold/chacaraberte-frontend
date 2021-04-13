@@ -1,17 +1,16 @@
 import React from "react";
 import { Container } from "./style";
-import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <Container>
-      <p>©2020 Nome do site. Todos os direitos reservados</p>
       <a
         href="https://agenciaade.com.br/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Feito com <FiHeart /> por agenciaade.com.br
+        ©2021 Chácara Berté criado com <FaHeart />, ADE!
       </a>
     </Container>
   );

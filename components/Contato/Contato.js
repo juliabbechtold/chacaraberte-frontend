@@ -1,144 +1,129 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container } from "./style";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { notification } from "antd";
-import Input from "react-input-mask";
+import Image from "next/image";
+import { FaWhatsapp, FaInstagram, FaFacebookF } from "react-icons/fa";
 
-import ademail from "../../services/ademail";
+import Footer from "../Footer/Footer";
 
 export default function Contato() {
-  const [disabledButton, setdisabledButton] = useState(false);
-
-  const formik = useFormik({
-    initialValues: {
-      nome: "",
-      email: "",
-      telefone: "",
-      mensagem: "",
-    },
-
-    validationSchema: Yup.object({
-      nome: Yup.string().required("*Campo nome é obrigatório"),
-      email: Yup.string()
-        .email("Informe um e-mail válido")
-        .required("*Campo e-mail é obrigatório"),
-      telefone: Yup.string().required("*Campo telefone é obrigatório"),
-      mensagem: Yup.string().required("*Campo mensagem é obrigatório"),
-    }),
-
-    onSubmit: async (values, { resetForm }) => {
-      const body = `
-                            <p>Nome: ${values.nome}</p>
-                            <p>E-mail: ${values.email}</p>
-                            <p>Telefone: ${values.telefone}</p>
-                            <p>Mensagem: ${values.mensagem}</p>
-                          `;
-
-      const mail = {
-        // to: "email@cliente.com.br",
-        to: "juliabbechtold@gmail.com",
-        from: values.email,
-        as: values.nome,
-        // bcc: JSON.stringify(["web@agenciaade.com.br"]),
-        subject: "Novo cadastro via site - Nome do site",
-        message: body,
-      };
-
-      try {
-        setdisabledButton(true);
-        // Sucesso ao enviar
-        await ademail.post("/email", mail);
-
-        notification.success({
-          message: "Cadastro enviado com sucesso! 🚀",
-          placement: "bottomRight",
-        });
-
-        setdisabledButton(false);
-        resetForm();
-      } catch (error) {
-        // Erro ao enviar
-        setdisabledButton(false);
-        notification.error({
-          message: "Não foi possivel concluir o cadastro! 😔",
-          description: "Verfique os campos e tente novamente mais tarde...",
-          placement: "bottomRight",
-        });
-      }
-    },
-  });
-
   return (
-    <Container>
-      <p>Entre em contato conosco!</p>
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.nome}
-          />
-          {formik.touched.nome && formik.errors.nome ? (
-            <span className="erro">{formik.errors.nome}</span>
-          ) : null}
+    <>
+      <Container>
+        <div className="banner">
+          <div className="bg">
+            <div className="pelicula" />
+            <Image src="/assets/img/footer.jpg" width="940" height="624" />
+          </div>
+          <h2>Venha conhecer</h2>
+          <a
+            className="visita"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://api.whatsapp.com/send?phone=5542998178063&text=Ol%C3%A1%2C%20gostaria%20de%20marcar%20uma%20visita%20para%20o%20dia%20..."
+          >
+            AGENDE SUA VISITA
+          </a>
         </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            placeholder="E-mail"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-          />
-          {formik.touched.email && formik.errors.email ? (
-            <span className="erro">{formik.errors.email}</span>
-          ) : null}
+        <div className="localizacao" id="localizacao">
+          <div className="left-content">
+            <div className="img1">
+              <Image
+                src="/assets/img/comochegar1.jpg"
+                width="1200"
+                height="800"
+              />
+            </div>
+            <div className="content">
+              <div className="bg" />
+              <h4>Como chegar</h4>
+              <p>
+                A Chácara Berté Eventos é um lugar totalmente elegante e repleto
+                de requinte, onde celebrar seu casamento vai ser como viver um
+                maravilhoso conto de fadas. Reserve já sua data, entre em
+                contato e peça seu orçamento grátis. Trata-se do espaço perfeito
+                para o seu grande dia. A 5 minutos da Santa Paula, o local é de
+                fácil acesso para você e seus convidados.
+              </p>
+            </div>
+            <div className="img2">
+              <Image
+                src="/assets/img/comochegar2.jpg"
+                width="959"
+                height="1280"
+              />
+            </div>
+            <div className="img3">
+              <Image
+                src="/assets/img/comochegar3.jpg"
+                width="576"
+                height="934"
+              />
+            </div>
+          </div>
+          <div className="right-content">
+            <h3>ONDE ESTAMOS?</h3>
+            <h2>Localização</h2>
+            <div className="mapa">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4508.667853113526!2d-50.22071819752363!3d-25.103060112126823!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc6df5a8e68c32c38!2zQ2jDoWNhcmEgQmVydMOp!5e0!3m2!1spt-BR!2sbr!4v1618267713751!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                loading="lazy"
+                frameBorder="0"
+              ></iframe>
+            </div>
+          </div>
         </div>
-        <div>
-          <Input
-            type="tel"
-            name="telefone"
-            mask={
-              formik.values.telefone.length <= 14
-                ? "(99) 9999-9999?"
-                : "(99) 99999-9999"
-            }
-            formatChars={{ 9: "[0-9]", "?": "[0-9 ]" }}
-            maskChar={null}
-            placeholder="Telefone"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.telefone}
-          />
-          {formik.touched.telefone && formik.errors.telefone ? (
-            <span>{formik.errors.telefone}</span>
-          ) : null}
+        <div className="infos">
+          <a href="/" className="logo">
+            <Image src="/assets/logo.svg" width="204,45" height="158,52" />
+          </a>
+          <div>
+            <div>
+              <label>ENDEREÇO</label>
+              <a
+                href="https://www.google.com/maps/place/Ch%C3%A1cara+Bert%C3%A9/@-25.1035543,-50.2181518,15z/data=!4m2!3m1!1s0x0:0xc6df5a8e68c32c38?sa=X&ved=2ahUKEwi01-Xl7PjvAhXKKLkGHesVAOcQ_BIwHnoECCwQBQ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                R. Alberto Tramontin, 1101 - Contorno, Ponta Grossa - PR,
+                84060-300
+              </a>
+            </div>
+            <div>
+              <label>CONTATO</label>
+              <a href="tel: +5542998178063">
+                <FaWhatsapp />
+                42 9 9817.8063
+              </a>
+              <a href="mailto: contato@chacaraberte.com.br">
+                contato@chacaraberte.com.br
+              </a>
+            </div>
+            <div>
+              <label>ATENDIMENTO</label>
+              <p>Terça a Sábado: das 9h às 18h.</p>
+            </div>
+            <div>
+              <a
+                href="https://www.instagram.com/chacaraberte/?hl=pt-br"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="https://www.facebook.com/chacaraberte/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebookF />
+              </a>
+            </div>
+          </div>
         </div>
-        <div>
-          {formik.touched.telefone && formik.errors.telefone ? (
-            <span className="erro">{formik.errors.telefone}</span>
-          ) : null}
-          <textarea
-            name="mensagem"
-            placeholder="Mensagem"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.mensagem}
-          />
-          {formik.touched.mensagem && formik.errors.mensagem ? (
-            <span>{formik.errors.mensagem}</span>
-          ) : null}
-        </div>
-        <div className="btn">
-          <button type="submit">Enviar</button>
-          <div className={disabledButton ? "disabled" : ""} />
-        </div>
-      </form>
-    </Container>
+      </Container>
+      <Footer />
+    </>
   );
 }

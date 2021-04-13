@@ -13,15 +13,21 @@ export const Container = styled.footer`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 20px;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: #fff;
 
-  p,
+  @media (max-width: 550px) {
+    padding: 30px 20px;
+  }
+
   a {
     font-size: 14px;
-    color: #000;
+    color: #483d2f;
     text-decoration: none;
     margin: 0;
+    font-family: "Futura";
+    text-align: center;
   }
 
   svg {

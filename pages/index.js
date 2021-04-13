@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Carousel } from "antd";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Header from "../components/Header/Header";
+import Contato from "../components/Contato/Contato";
 
 import { Container, Banner, Sobre, Servicos, Eventos } from "../styles/home.js";
 
@@ -57,7 +58,7 @@ export default function Home() {
             <h3>SEJA BEM-VINDO</h3>
           </div>
         </Banner>
-        <Sobre>
+        <Sobre id="sobre">
           <div className="text">
             <div>
               <h3>NOSSA HISTÓRIA</h3>
@@ -117,7 +118,7 @@ export default function Home() {
             </Carousel>
           </div>
         </Sobre>
-        <Servicos>
+        <Servicos id="servicos">
           <div className="bg">
             <Image
               src="/assets/img/folhas_detail.svg"
@@ -179,7 +180,7 @@ export default function Home() {
             </div>
           </Carousel>
         </Servicos>
-        <Eventos>
+        <Eventos id="eventos">
           <div className="title">
             <h3>NOSSAS OPÇÕES</h3>
             <h2>Eventos</h2>
@@ -264,6 +265,7 @@ export default function Home() {
           </Carousel>
         </Eventos>
       </Container>
+      <Contato />
     </>
   );
 }

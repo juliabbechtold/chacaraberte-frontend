@@ -111,12 +111,15 @@ export const Sobre = styled.div`
   max-width: 1340px;
   position: relative;
   top: -50px;
-  background-color: #fff;
-  z-index: 1;
+  z-index: 2;
   display: flex;
+  padding-top: 80px;
+  margin-top: -80px;
 
   @media (max-width: 1440px) {
     width: 80%;
+    padding-top: 60px;
+    margin-top: -60px;
   }
 
   @media (max-width: 950px) {
@@ -125,6 +128,8 @@ export const Sobre = styled.div`
 
   @media (max-width: 750px) {
     flex-direction: column;
+    padding-top: 30px;
+    margin-top: -30px;
   }
 
   > div {
@@ -140,6 +145,7 @@ export const Sobre = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
 
     @media (max-width: 1440px) {
       padding: 160px 60px 160px 20px;
@@ -282,8 +288,8 @@ export const Sobre = styled.div`
 `;
 
 export const Servicos = styled.div`
-  margin: 210px 0 250px 0;
-  padding: 200px 20px;
+  margin: 260px 0 250px 0;
+  padding: 150px 20px;
   position: relative;
   width: 70%;
   max-width: 1340px;
@@ -294,8 +300,8 @@ export const Servicos = styled.div`
 
   @media (max-width: 1440px) {
     width: 80%;
-    margin: 210px 0 250px 0;
-    padding: 100px 20px;
+    margin: 100px 0 150px 0;
+    padding: 130px 20px;
   }
 
   @media (max-width: 950px) {
@@ -304,7 +310,8 @@ export const Servicos = styled.div`
 
   @media (max-width: 750px) {
     margin: 0;
-    padding: 100px 20px 140px 20px;
+    padding: 30px 20px 100px 20px;
+    margin-top: 20px;
   }
 
   .bg {
@@ -320,7 +327,7 @@ export const Servicos = styled.div`
 
   .arrow {
     @media (max-width: 750px) {
-      bottom: 410px;
+      bottom: 450px;
     }
   }
 
@@ -462,6 +469,8 @@ export const Eventos = styled.div`
   justify-content: center;
   padding: 0 20px;
   margin-bottom: 300px;
+  padding-top: 50px;
+  margin-top: -50px;
 
   @media (max-width: 1440px) {
     width: 80%;
@@ -471,17 +480,24 @@ export const Eventos = styled.div`
     width: 100%;
   }
 
+  @media (max-width: 750px) {
+    padding-top: 30px;
+    margin-top: -30px;
+    margin-bottom: 100px;
+  }
+
   .title {
     position: absolute;
     display: flex;
     flex-direction: column;
-    top: 0;
+    top: 50px;
     left: 20px;
 
     @media (max-width: 1150px) {
       position: relative;
       align-self: flex-start;
       left: unset;
+      top: unset;
     }
 
     h3 {
@@ -510,6 +526,14 @@ export const Eventos = styled.div`
     @media (max-width: 1150px) {
       flex-direction: row;
       margin-right: unset;
+    }
+
+    @media (max-width: 750px) {
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 456px) {
+      margin-bottom: 10px;
     }
 
     button {

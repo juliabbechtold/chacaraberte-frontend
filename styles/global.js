@@ -71,15 +71,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 30px;
     font-weight: 300;
     color: #A89478;
     margin: 0;
+    font-family: 'Futura';
 
     @media (max-width: 1440px) {
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 20px;
+      line-height: 26px;
     }
   }
 
@@ -144,6 +145,28 @@ const GlobalStyle = createGlobalStyle`
 
       @media (max-width: 1440px) {
         height: 60px;
+      }
+    }
+  }
+
+  .fixed {
+    .hamburger {
+      position: fixed !important;
+      padding: ${(props) =>
+        props.isOpen ? "padding: 0" : "50px 10px 10px 10px !important"};
+      background-color: ${(props) =>
+        props.isOpen ? "transparent" : "rgba(193, 161, 119, 0.5)"};
+      top: 0 !important;
+      right: 15% !important;
+
+      @media (max-width: 1440px) {
+        right: 10% !important;
+      }
+
+      @media (max-width: 950px) {
+        padding: ${(props) =>
+          props.isOpen ? "padding: 0" : "20px 10px 10px 10px !important"};
+          right: 10px !important;
       }
     }
   }
@@ -223,11 +246,11 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Futura';
-    src: url('/assets/img/FuturaBT-Bold.eot');
-    src: url('/assets/img/FuturaBT-Bold.eot?#iefix') format('embedded-opentype'),
-        url('/assets/img/FuturaBT-Bold.woff2') format('woff2'),
-        url('/assets/img/FuturaBT-Bold.woff') format('woff'),
-        url('/assets/img/FuturaBT-Bold.ttf') format('truetype');
+    src: url('/assets/fonts/FuturaBT-BoldCondensed.eot');
+    src: url('/assets/fonts/FuturaBT-BoldCondensed.eot?#iefix') format('embedded-opentype'),
+        url('/assets/fonts/FuturaBT-BoldCondensed.woff2') format('woff2'),
+        url('/assets/fonts/FuturaBT-BoldCondensed.woff') format('woff'),
+        url('/assets/fonts/FuturaBT-BoldCondensed.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -235,11 +258,23 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
       font-family: 'Futura';
-      src: url('/assets/img/FuturaBT-Book.eot');
-      src: url('/assets/img/FuturaBT-Book.eot?#iefix') format('embedded-opentype'),
-          url('/assets/img/FuturaBT-Book.woff2') format('woff2'),
-          url('/assets/img/FuturaBT-Book.woff') format('woff'),
-          url('/assets/img/FuturaBT-Book.ttf') format('truetype');
+      src: url('/assets/fonts/Futura-Bold.eot');
+      src: url('/assets/fonts/Futura-Bold.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/Futura-Bold.woff2') format('woff2'),
+          url('/assets/fonts/Futura-Bold.woff') format('woff'),
+          url('/assets/fonts/Futura-Bold.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  @font-face {
+      font-family: 'Futura';
+      src: url('/assets/fonts/FuturaBT-Book.eot');
+      src: url('/assets/fonts/FuturaBT-Book.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/FuturaBT-Book.woff2') format('woff2'),
+          url('/assets/fonts/FuturaBT-Book.woff') format('woff'),
+          url('/assets/fonts/FuturaBT-Book.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -247,15 +282,53 @@ const GlobalStyle = createGlobalStyle`
 
   @font-face {
       font-family: 'Futura';
-      src: url('/assets/img/FuturaBT-Medium.eot');
-      src: url('/assets/img/FuturaBT-Medium.eot?#iefix') format('embedded-opentype'),
-          url('/assets/img/FuturaBT-Medium.woff2') format('woff2'),
-          url('/assets/img/FuturaBT-Medium.woff') format('woff'),
-          url('/assets/img/FuturaBT-Medium.ttf') format('truetype');
+      src: url('/assets/fonts/FuturaBT-ExtraBlack.eot');
+      src: url('/assets/fonts/FuturaBT-ExtraBlack.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/FuturaBT-ExtraBlack.woff2') format('woff2'),
+          url('/assets/fonts/FuturaBT-ExtraBlack.woff') format('woff'),
+          url('/assets/fonts/FuturaBT-ExtraBlack.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  @font-face {
+      font-family: 'Futura';
+      src: url('/assets/fonts/FuturaBT-Medium.eot');
+      src: url('/assets/fonts/FuturaBT-Medium.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/FuturaBT-Medium.woff2') format('woff2'),
+          url('/assets/fonts/FuturaBT-Medium.woff') format('woff'),
+          url('/assets/fonts/FuturaBT-Medium.ttf') format('truetype');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
   }
+
+  @font-face {
+      font-family: 'Futura';
+      src: url('/assets/fonts/FuturaBT-Heavy.eot');
+      src: url('/assets/fonts/FuturaBT-Heavy.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/FuturaBT-Heavy.woff2') format('woff2'),
+          url('/assets/fonts/FuturaBT-Heavy.woff') format('woff'),
+          url('/assets/fonts/FuturaBT-Heavy.ttf') format('truetype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  @font-face {
+      font-family: 'Futura';
+      src: url('/assets/fonts/FuturaBT-LightCondensed.eot');
+      src: url('/assets/fonts/FuturaBT-LightCondensed.eot?#iefix') format('embedded-opentype'),
+          url('/assets/fonts/FuturaBT-LightCondensed.woff2') format('woff2'),
+          url('/assets/fonts/FuturaBT-LightCondensed.woff') format('woff'),
+          url('/assets/fonts/FuturaBT-LightCondensed.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+  }
+
+
 
 
 
