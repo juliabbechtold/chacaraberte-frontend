@@ -92,7 +92,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="/#localizacao" onClick={() => setOpenMenu(false)}>
+                <a href="#localizacao" onClick={() => setOpenMenu(false)}>
                   LOCALIZAÇÃO
                 </a>
               </li>

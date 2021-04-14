@@ -509,7 +509,7 @@ export const Servicos = styled.div`
 
 export const Eventos = styled.div`
   position: relative;
-  width: calc(70% + 145px);
+  width: 70%;
   max-width: 1340px;
   z-index: 1;
   display: flex;
@@ -523,6 +523,7 @@ export const Eventos = styled.div`
 
   @media (max-width: 1440px) {
     width: 80%;
+    margin-bottom: 250px;
   }
 
   @media (max-width: 950px) {
@@ -542,7 +543,7 @@ export const Eventos = styled.div`
     top: 50px;
     left: 20px;
 
-    @media (max-width: 1150px) {
+    @media (max-width: 750px) {
       position: relative;
       align-self: flex-start;
       left: unset;
@@ -566,23 +567,10 @@ export const Eventos = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    margin-right: 145px;
-
-    @media (max-width: 1440px) {
-      margin-right: 50px;
-    }
-
-    @media (max-width: 1150px) {
-      flex-direction: row;
-      margin-right: unset;
-    }
 
     @media (max-width: 750px) {
-      margin-bottom: 50px;
-    }
-
-    @media (max-width: 456px) {
-      margin-bottom: 10px;
+      flex-direction: row;
+      bottom: 310px;
     }
 
     button {
@@ -592,7 +580,7 @@ export const Eventos = styled.div`
     button:last-child {
       margin-top: 10px;
 
-      @media (max-width: 1150px) {
+      @media (max-width: 750px) {
         margin-left: 10px;
         margin-top: 0px;
       }
@@ -617,17 +605,14 @@ export const Eventos = styled.div`
       bottom: 150px;
     }
 
-    @media (max-width: 1150px) {
-      bottom: 565px;
-      left: 27%;
-    }
-
     @media (max-width: 750px) {
+      bottom: 400px;
       left: 22%;
     }
 
     @media (max-width: 480px) {
       left: 20px;
+      width: fit-content;
     }
   }
 
@@ -659,26 +644,21 @@ export const Eventos = styled.div`
 
   .slider {
     padding-top: 160px;
-    padding-right: 145px;
     display: flex !important;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
     position: relative;
 
-    @media (max-width: 1440px) {
-      padding-right: 100px;
-    }
-
-    @media (max-width: 1150px) {
+    @media (max-width: 750px) {
       flex-direction: column;
-      padding-right: 0px;
+      padding-top: 0;
     }
 
     > div {
       width: 50%;
 
-      @media (max-width: 1150px) {
+      @media (max-width: 750px) {
         width: 100%;
       }
     }
@@ -691,14 +671,11 @@ export const Eventos = styled.div`
       justify-content: center;
 
       @media (max-width: 1440px) {
-        width: 52%;
         padding: 220px 60px 220px 20px;
       }
 
-      @media (max-width: 1150px) {
-        width: 100%;
+      @media (max-width: 750px) {
         position: relative;
-        top: -160px;
         padding: 60px 20px 100px 20px;
       }
 
@@ -732,59 +709,15 @@ export const Eventos = styled.div`
 
     .img {
       position: absolute;
-      right: 145px;
       top: -160px;
       height: 100%;
-      width: calc(50% - 73px);
+      right: 0;
 
-      @media (max-width: 1440px) {
-        right: 100px;
-      }
-
-      @media (max-width: 1150px) {
-        width: 100%;
+      @media (max-width: 750px) {
         height: 350px;
         position: relative;
         right: unset;
-      }
-
-      > div {
-        width: 100%;
-        height: 100%;
-
-        img {
-          object-fit: cover;
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-    .secimg {
-      width: 460px;
-      height: 430px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-
-      @media (max-width: 1440px) {
-        width: 360px;
-        height: 330px;
-      }
-
-      @media (max-width: 1150px) {
-        width: 300px;
-        height: 270px;
-      }
-
-      @media (max-width: 450px) {
-        width: 280px;
-        height: 250px;
-        right: -10px;
-      }
-
-      @media (max-width: 360px) {
-        width: 250px;
-        height: 220px;
+        top: unset;
       }
 
       > div {

@@ -223,19 +223,12 @@ export default function Home() {
                     seu dia. Organizamos aniversários com uma estrutura única da
                     qual você lembrará sempre desse dia. Também oferecemos […]
                   </p>
-                  <a className="leia-mais" href="/sobre">
+                  <a className="leia-mais" href="/eventos/aniversarios">
                     Leia mais
                   </a>
                 </div>
               </div>
               <div className="img">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-              <div className="secimg">
                 <Image
                   src="/assets/img/sobre1.jpg"
                   width="1600"
@@ -259,13 +252,6 @@ export default function Home() {
                 </div>
               </div>
               <div className="img">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-              <div className="secimg">
                 <Image
                   src="/assets/img/sobre1.jpg"
                   width="1600"

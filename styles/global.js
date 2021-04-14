@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import "../node_modules/hamburgers/dist/hamburgers.css";
 import "antd/dist/antd.css";
+import "react-bnb-gallery/dist/style.css";
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -44,7 +45,6 @@ const GlobalStyle = createGlobalStyle`
       font-size: 60px;
       line-height: 80px;
     }
-
     
     @media (max-width: 360px) {
       font-size: 50px;
@@ -171,6 +171,9 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .gallery-thumbnails--toggle {
+    opacity: 0;
+  }
 
   @font-face {
     font-family: 'Brandon Grotesque';
