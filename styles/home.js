@@ -733,3 +733,268 @@ export const Eventos = styled.div`
     }
   }
 `;
+
+export const Modal = styled.div`
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  background-color: #fff;
+  position: fixed;
+  z-index: -1;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: all ease 0.5s;
+
+  form {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+    padding: 120px 20px 210px 20px;
+
+    @media (max-width: 1440px) {
+      padding: 100px 20px 180px 20px;
+    }
+
+    @media (max-width: 750px) {
+      padding: 60px 20px 120px 20px;
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+
+    .close {
+      position: absolute;
+      right: 18%;
+      top: 170px;
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      cursor: pointer;
+
+      @media (max-width: 1440px) {
+        right: 14%;
+        top: 150px;
+      }
+
+      @media (max-width: 1000px) {
+        right: 6%;
+      }
+
+      @media (max-width: 750px) {
+        right: 20px;
+        top: 20px;
+      }
+
+      svg {
+        height: 50px;
+        width: auto;
+        fill: #5c4534;
+
+        @media (max-width: 750px) {
+          height: 40px;
+        }
+      }
+    }
+
+    .content {
+      max-width: 765px;
+      width: 100%;
+
+      h2 {
+        color: #86e8e4;
+        line-height: 92px;
+        text-align: center;
+        position: relative;
+        max-width: 496px;
+        margin: 0 auto 100px auto;
+
+        @media (max-width: 1440px) {
+          line-height: 72px;
+          margin: 0 auto 80px auto;
+          max-width: 397px;
+        }
+
+        @media (max-width: 750px) {
+          line-height: 52px;
+          margin: 0 auto 60px auto;
+          max-width: 298px;
+        }
+
+        ::after {
+          position: absolute;
+          content: "";
+          width: 150px;
+          height: 8px;
+          background-color: #765c3d;
+          bottom: -30px;
+          right: 0px;
+        }
+      }
+
+      > div {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        .ant-picker {
+          padding: 0;
+          border: none;
+        }
+
+        .ant-picker-focused {
+          box-shadow: none;
+        }
+
+        .ant-picker-suffix {
+          position: absolute;
+          right: 0;
+
+          svg {
+            fill: #2f1f08;
+          }
+        }
+
+        .ant-select {
+          width: 100%;
+          height: 60px;
+          font-size: 25px;
+          line-height: 33px;
+          color: #6c5c47;
+          margin-top: 30px;
+          font-family: "Brandon Grotesque";
+          border: none !important;
+
+          @media (max-width: 1440px) {
+            font-size: 22px;
+            line-height: 30px;
+            height: 60px;
+          }
+
+          @media (max-width: 750px) {
+            font-size: 18px;
+            line-height: 26px;
+            margin-top: 20px;
+            height: 50px;
+          }
+        }
+
+        .ant-select-selector {
+          height: 60px !important;
+          padding: 0 !important;
+          border: none !important;
+          border-bottom: 1px solid #2f1f08 !important;
+          box-shadow: none !important;
+
+          @media (max-width: 1440px) {
+            height: 60px !important;
+          }
+
+          @media (max-width: 750px) {
+            height: 50px !important;
+          }
+        }
+
+        .ant-select-selection-placeholder {
+          color: #6c5c47;
+        }
+
+        .ant-select-arrow {
+          margin-top: -20px;
+
+          svg {
+            fill: #2f1f08;
+          }
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          height: 85px;
+          border: none;
+          border-bottom: 1px solid #2f1f08;
+          resize: none;
+          font-size: 25px;
+          line-height: 33px;
+          color: #6c5c47;
+          font-family: "Brandon Grotesque";
+          background-color: transparent;
+
+          @media (max-width: 1440px) {
+            font-size: 22px;
+            line-height: 30px;
+            height: 75px;
+          }
+
+          @media (max-width: 750px) {
+            font-size: 18px;
+            line-height: 26px;
+            height: 65px;
+          }
+
+          ::-webkit-input-placeholder {
+            color: #6c5c47;
+          }
+        }
+
+        textarea {
+          height: 140px;
+          margin-top: 30px;
+
+          @media (max-width: 750px) {
+            margin-top: 20px;
+          }
+        }
+
+        .erro {
+          position: absolute;
+          bottom: -22px;
+          font-size: 14px;
+          color: red;
+          z-index: 1;
+        }
+      }
+
+      .btn {
+        position: relative;
+        width: 100%;
+        margin-top: 30px;
+
+        button {
+          border: 1px solid #2f1f08;
+          background-color: transparent;
+          border-radius: 20px;
+          height: 65px;
+          font-size: 25px;
+          line-height: 33px;
+          color: #6c5c47;
+          font-family: "Brandon Grotesque";
+          cursor: pointer;
+          transition: all ease 0.5s;
+
+          @media (max-width: 1440px) {
+            font-size: 22px;
+            line-height: 30px;
+          }
+
+          @media (max-width: 750px) {
+            font-size: 18px;
+            line-height: 26px;
+          }
+
+          :hover {
+            background-color: #c1a177;
+          }
+        }
+      }
+    }
+  }
+`;

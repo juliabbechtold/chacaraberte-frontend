@@ -50,6 +50,9 @@ export const Banner = styled.div`
     line-height: 33px;
     color: #fff;
     font-family: "Brandon Grotesque";
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 
     @media (max-width: 1440px) {
       font-size: 20px;

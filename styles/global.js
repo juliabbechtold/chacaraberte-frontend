@@ -175,6 +175,11 @@ const GlobalStyle = createGlobalStyle`
     opacity: 0;
   }
 
+  .open {
+    z-index: 11 !important;
+    opacity: 1 !important;
+  }
+
   @font-face {
     font-family: 'Brandon Grotesque';
     src: url('/assets/fonts/BrandonGrotesque-Bold.eot');

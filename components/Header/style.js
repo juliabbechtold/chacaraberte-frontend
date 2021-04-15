@@ -199,7 +199,8 @@ export const Menu = styled.div`
             margin: 10px 0;
           }
 
-          a {
+          a,
+          button {
             font-size: 60px;
             line-height: 80px;
             font-weight: 300;
@@ -208,6 +209,9 @@ export const Menu = styled.div`
             display: flex;
             position: relative;
             width: fit-content;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
 
             @media (max-width: 1440px) {
               font-size: 45px;
