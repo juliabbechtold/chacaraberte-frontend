@@ -42,6 +42,8 @@ export const Banner = styled.div`
     line-height: 33px;
     color: #fff;
     font-family: "Brandon Grotesque";
+    padding: 0;
+    margin: 0;
 
     @media (max-width: 1440px) {
       font-size: 20px;
@@ -848,6 +850,7 @@ export const Modal = styled.div`
         .ant-picker {
           padding: 0;
           border: none;
+          border-radius: 0;
         }
 
         .ant-picker-focused {
@@ -893,6 +896,7 @@ export const Modal = styled.div`
           border: none !important;
           border-bottom: 1px solid #2f1f08 !important;
           box-shadow: none !important;
+          border-radius: 0 !important;
 
           @media (max-width: 1440px) {
             height: 60px !important;
@@ -927,6 +931,7 @@ export const Modal = styled.div`
           color: #6c5c47;
           font-family: "Brandon Grotesque";
           background-color: transparent;
+          border-radius: 0;
 
           @media (max-width: 1440px) {
             font-size: 22px;
