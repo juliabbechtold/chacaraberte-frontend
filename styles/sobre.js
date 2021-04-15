@@ -53,6 +53,8 @@ export const Banner = styled.div`
     background-color: transparent;
     border: none;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
 
     @media (max-width: 1440px) {
       font-size: 20px;

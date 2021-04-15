@@ -932,6 +932,7 @@ export const Modal = styled.div`
           font-family: "Brandon Grotesque";
           background-color: transparent;
           border-radius: 0;
+          padding: 0;
 
           @media (max-width: 1440px) {
             font-size: 22px;
