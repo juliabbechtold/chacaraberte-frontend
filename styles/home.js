@@ -132,8 +132,9 @@ export const Banner = styled.div`
       text-align: center;
       margin-top: 35px;
       margin-bottom: 20px;
+      max-width: 575px;
 
-      span {
+      strong {
         color: #86e8e4;
       }
     }
@@ -166,6 +167,7 @@ export const Sobre = styled.div`
   display: flex;
   padding-top: 80px;
   margin-top: -80px;
+  opacity: 1;
 
   @media (max-width: 1440px) {
     width: 80%;
@@ -321,6 +323,7 @@ export const Sobre = styled.div`
       height: 100%;
       width: 100%;
       position: relative;
+      background-color: #fff;
 
       > div {
         height: 100%;

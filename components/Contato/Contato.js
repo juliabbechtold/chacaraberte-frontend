@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "./style";
 import Image from "next/image";
 import { FaWhatsapp, FaInstagram, FaFacebookF } from "react-icons/fa";
+import api from "../../services/api";
 
 import Footer from "../Footer/Footer";
 
 export default function Contato() {
+  const [dados, setDados] = useState();
+
+  useEffect(() => {
+    api.get("/pages?slug=home").then((response) => setDados(response.data[0]));
+  }, []);
+
   return (
     <>
       <Container>
@@ -36,14 +43,7 @@ export default function Contato() {
             <div className="content">
               <div className="bg" />
               <h4>Como chegar</h4>
-              <p>
-                A Chácara Berté Eventos é um lugar totalmente elegante e repleto
-                de requinte, onde celebrar seu casamento vai ser como viver um
-                maravilhoso conto de fadas. Reserve já sua data, entre em
-                contato e peça seu orçamento grátis. Trata-se do espaço perfeito
-                para o seu grande dia. A 5 minutos da Santa Paula, o local é de
-                fácil acesso para você e seus convidados.
-              </p>
+              <p>{!!dados && dados.acf.secao_da_localizacao.descricao}</p>
             </div>
             <div className="img2">
               <Image

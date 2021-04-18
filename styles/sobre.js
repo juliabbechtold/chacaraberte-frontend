@@ -208,6 +208,7 @@ export const Galeria = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 300px;
+  width: 100%;
 
   @media (max-width: 1440px) {
     margin-top: 150px;
@@ -238,6 +239,7 @@ export const Galeria = styled.div`
     grid-auto-rows: 250px;
     padding: 0 14%;
     justify-content: center;
+    width: 100%;
 
     @media (max-width: 1440px) {
       padding: 0 10%;

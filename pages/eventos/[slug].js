@@ -19,8 +19,42 @@ import * as Yup from "yup";
 import Input from "react-input-mask";
 import ademail from "../../services/ademail";
 import { IoClose } from "react-icons/io5";
+import { useRouter } from "next/router";
+import api from "../../services/api";
+import ReactHtmlParser from "react-html-parser";
 
-export default function Eventos() {
+export async function getStaticProps({ params }) {
+  // Fetch data from external API
+  const res = await api.get(`eventos?slug=${params.slug}`);
+
+  // Pass data to the page via props
+  return {
+    props: {
+      dados: res.data[0],
+    },
+    revalidate: 5,
+  };
+}
+
+export async function getStaticPaths() {
+  const res = await api.get("eventos?per_page=99");
+
+  const paths = res.data.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  return { paths, fallback: true };
+}
+
+export default function Eventos({ dados }) {
+  const router = useRouter();
+
+  // Fallback
+  if (router.isFallback) {
+    return <p>carregando...</p>;
+  }
+
   const depoimentos = useRef();
   const settings = {
     dots: false,
@@ -35,17 +69,10 @@ export default function Eventos() {
 
   const [isOpenGallery, setIsOpenGallery] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const PHOTOS = [
-    { photo: "/assets/img/sobre.jpg", number: 0 },
-    { photo: "/assets/img/sobre.jpg", number: 1 },
-    { photo: "/assets/img/sobre.jpg", number: 2 },
-    { photo: "/assets/img/sobre.jpg", number: 3 },
-    { photo: "/assets/img/sobre.jpg", number: 4 },
-    { photo: "/assets/img/sobre.jpg", number: 5 },
-    { photo: "/assets/img/sobre.jpg", number: 6 },
-    { photo: "/assets/img/sobre.jpg", number: 7 },
-    { photo: "/assets/img/sobre.jpg", number: 8 },
-  ];
+  const PHOTOS = dados.acf.galeria_de_fotos.map((foto, index) => ({
+    photo: foto.sizes.large,
+    number: index,
+  }));
 
   const { Option } = Select;
   const [disabledButton, setdisabledButton] = useState(false);
@@ -141,10 +168,12 @@ export default function Eventos() {
     setEventoErro(false);
   }
 
+  console.log(dados);
+
   return (
     <>
       <Head>
-        <title>Sobre a Chácara Berté</title>
+        <title>{dados.title.rendered} | Chácara Berté</title>
       </Head>
       <Header />
       <Container>
@@ -154,7 +183,11 @@ export default function Eventos() {
           </button>
           <div className="bg" />
           <div className="img">
-            <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
+            <Image
+              src={dados.acf.imagem_de_banner.sizes.large}
+              width={dados.acf.imagem_de_banner.sizes["large-width"]}
+              height={dados.acf.imagem_de_banner.sizes["large-height"]}
+            />
           </div>
           <div className="content">
             <a className="logo" href="/">
@@ -164,138 +197,36 @@ export default function Eventos() {
                 height="160,19"
               />
             </a>
-            <h2>Sobre</h2>
+            <h2>{dados.title.rendered}</h2>
           </div>
         </Banner>
         <Text>
-          <h4>“Realizar sonhos sempre foi nosso objetivo”.</h4>
-          <p>
-            Na Chácara Berté Eventos o seu grande dia vai se tornar ainda mais
-            especial e único, ficando guardado para sempre na sua memória. Além
-            de um atendimento impecável, a chácara tem a oferecer a melhor
-            infraestrutura física para realizar o seu casamento com total
-            sucesso.
-          </p>
-          <p>
-            Possui um espaço físico impressionante, o qual tem a proporcionar
-            todo conforto e comodidade que se necessita para desfrutar de um
-            evento. Além disso, o que chama bastante atenção é a área externa:
-            rodeada de verde, onde se pode realizar uma cerimônia linda, com o
-            mais puro ar e o canto dos pássaros.
-          </p>
+          <h4>"{dados.acf.frase_em_destaque}"</h4>
+          {ReactHtmlParser(dados.acf.texto_completo_sobre)}
         </Text>
         <Galeria>
           <h3>NOSSOS ESTRUTURA</h3>
           <h2>Galeria</h2>
           <div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(0);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
+            {dados.acf.galeria_de_fotos.map((foto, index) => (
+              <div
+                className="img"
+                onClick={() => {
+                  setIsOpenGallery(true);
+                  setSelectedIndex(index);
+                }}
+                key={index}
+              >
+                <Image
+                  src={foto.sizes.thumbnail}
+                  width={foto.sizes["thumbnail-width"]}
+                  height={foto.sizes["thumbnail-height"]}
+                />
+                <div className="hover">
+                  <h3>VER FOTO</h3>
+                </div>
               </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(1);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(2);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(3);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(4);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(5);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(6);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(7);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
-            <div
-              className="img"
-              onClick={() => {
-                setIsOpenGallery(true);
-                setSelectedIndex(8);
-              }}
-            >
-              <Image src="/assets/img/sobre.jpg" width="2048" height="1366" />
-              <div className="hover">
-                <h3>VER FOTO</h3>
-              </div>
-            </div>
+            ))}
           </div>
         </Galeria>
         <Depoimentos>
@@ -320,30 +251,24 @@ export default function Eventos() {
             </button>
           </div>
           <Carousel ref={depoimentos} {...settings} effect="fade">
-            <div className="slider">
-              <div className="text">
-                <div>
-                  <h3>“Uma experiência mais que incrível, foi única.”</h3>
-                  <p>
-                    “Eu não tenho como agradecer, não tem palavra ou sentimento
-                    que explique tudo que vivemos! Foi o melhor sentimento que
-                    vivemos em nossas vidas! Inexplicável! Quando entramos na
-                    casa em 2015, não tínhamos noção da melhor escolha íamos
-                    fazer. Estava tudo impecável, a decoração eu não tenho como
-                    explicar… A mesa do bolo, doces, todos os detalhes que nunca
-                    vão sair da memória de todos ali presentes.
-                  </p>
-                  <p className="nome">Bianca e Fernando.</p>
+            {dados.acf.depoimentos.map((depoimento, index) => (
+              <div className="slider" key={index}>
+                <div className="text">
+                  <div>
+                    <h3>{depoimento.frase_destaque}</h3>
+                    <p>"{depoimento.texto}</p>
+                    <p className="nome">{depoimento.nome}.</p>
+                  </div>
+                </div>
+                <div className="img">
+                  <Image
+                    src="/assets/img/sobre1.jpg"
+                    width="1600"
+                    height="1068"
+                  />
                 </div>
               </div>
-              <div className="img">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-            </div>
+            ))}
           </Carousel>
         </Depoimentos>
         <div className="folhasdetail1">

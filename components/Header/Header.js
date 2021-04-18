@@ -128,8 +128,6 @@ export default function Header() {
     setEventoErro(false);
   }
 
-  console.log(data);
-
   return (
     <>
       <Navbar isOpen={openMenu} className={fixedMenu ? "fixed" : ""}>

@@ -1,14 +1,31 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Carousel } from "antd";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import Header from "../components/Header/Header";
 import Contato from "../components/Contato/Contato";
+import api from "../services/api";
+import ReactHtmlParser from "react-html-parser";
 
 import { Container, Banner, Sobre, Servicos, Eventos } from "../styles/home.js";
 
-export default function Home() {
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await api.get("eventos");
+  const res_home = await api.get("/pages?slug=home");
+
+  // Pass data to the page via props
+  return {
+    props: {
+      data_events: res.data,
+      data_home: res_home.data[0],
+    },
+    revalidate: 5,
+  };
+}
+
+export default function Home({ data_events, data_home }) {
   const sobre = useRef();
   const servicos = useRef();
   const eventos = useRef();
@@ -22,6 +39,17 @@ export default function Home() {
     slidesToScroll: 1,
     draggable: true,
   };
+
+  const [sobreImagens, setSobreImagens] = useState();
+
+  useEffect(() => {
+    var array = [];
+
+    for (let i = 0; i < 5; i += 1) {
+      array[i] = data_home.acf.galeria_de_fotos[i];
+      setSobreImagens(array);
+    }
+  }, []);
 
   return (
     <>
@@ -53,7 +81,11 @@ export default function Home() {
           </a>
           <div className="bg" />
           <div className="img">
-            <Image src="/assets/img/banner.jpg" width="1200" height="800" />
+            <Image
+              src={data_home.acf.banner.imagem.sizes.large}
+              width={data_home.acf.banner.imagem.sizes["large-width"]}
+              height={data_home.acf.banner.imagem.sizes["large-height"]}
+            />
           </div>
           <div className="content">
             <a className="logo" href="/">
@@ -63,9 +95,7 @@ export default function Home() {
                 height="160,19"
               />
             </a>
-            <h2>
-              eternizando <br /> <span>seus sonhos</span>
-            </h2>
+            {ReactHtmlParser(data_home.acf.banner.texto)}
             <h3>SEJA BEM-VINDO</h3>
           </div>
         </Banner>
@@ -74,13 +104,7 @@ export default function Home() {
             <div>
               <h3>NOSSA HISTÓRIA</h3>
               <h2>Sobre</h2>
-              <p>
-                Na Chácara Berté Eventos o seu grande dia vai se tornar ainda
-                mais especial e único, ficando guardado para sempre na sua
-                memória. Além de um atendimento impecável, a chácara tem a
-                oferecer a melhor infraestrutura física para realizar o seu
-                casamento com total sucesso.
-              </p>
+              <p>{data_home.acf.resumo}</p>
               <a className="leia-mais" href="/sobre">
                 Leia mais
               </a>
@@ -95,37 +119,16 @@ export default function Home() {
           </button>
           <div className="carousel">
             <Carousel ref={sobre} {...settings} effect="fade">
-              <div className="slider">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-              <div className="slider">
-                <Image
-                  src="/assets/img/sobre2.jpg"
-                  width="1367"
-                  height="2048"
-                />
-              </div>
-              <div className="slider">
-                <Image
-                  src="/assets/img/sobre3.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-              <div className="slider">
-                <Image
-                  src="/assets/img/sobre4.jpg"
-                  width="1367"
-                  height="2048"
-                />
-              </div>
-              <div className="slider">
-                <Image src="/assets/img/sobre5.jpg" width="960" height="640" />
-              </div>
+              {!!sobreImagens &&
+                sobreImagens.map((img, index) => (
+                  <div className="slider" key={index}>
+                    <Image
+                      src={img.sizes.large}
+                      width={img.sizes["large-width"]}
+                      height={img.sizes["large-height"]}
+                    />
+                  </div>
+                ))}
             </Carousel>
           </div>
         </Sobre>
@@ -145,50 +148,24 @@ export default function Home() {
             <IoIosArrowForward />
           </button>
           <Carousel ref={servicos} {...settings} effect="fade">
-            <div className="slider">
-              <div className="img">
-                <Image
-                  src="/assets/img/servico1.jpg"
-                  width="719"
-                  height="475"
-                />
-              </div>
-              <div className="text">
-                <div>
-                  <h3>SERVIÇOS</h3>
-                  <h2>Buffet</h2>
-                  <p>
-                    Na Chácara Berté Eventos o seu grande dia vai se tornar
-                    ainda mais especial e único, ficando guardado para sempre na
-                    sua memória. Além de um atendimento impecável, a chácara tem
-                    a oferecer a melhor infraestrutura física para realizar o
-                    seu casamento com total sucesso.
-                  </p>
+            {data_home.acf.secao_de_servicos.map((servico, index) => (
+              <div className="slider" key={index}>
+                <div className="img">
+                  <Image
+                    src={servico.foto.sizes.large}
+                    width={servico.foto.sizes["large-width"]}
+                    height={servico.foto.sizes["large-height"]}
+                  />
+                </div>
+                <div className="text">
+                  <div>
+                    <h3>SERVIÇOS</h3>
+                    <h2>{servico.nome}</h2>
+                    <p>{servico.descricao}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="slider">
-              <div className="img">
-                <Image
-                  src="/assets/img/servico1.jpg"
-                  width="719"
-                  height="475"
-                />
-              </div>
-              <div className="text">
-                <div>
-                  <h3>SERVIÇOS</h3>
-                  <h2>Buffet</h2>
-                  <p>
-                    Na Chácara Berté Eventos o seu grande dia vai se tornar
-                    ainda mais especial e único, ficando guardado para sempre na
-                    sua memória. Além de um atendimento impecável, a chácara tem
-                    a oferecer a melhor infraestrutura física para realizar o
-                    seu casamento com total sucesso.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </Carousel>
         </Servicos>
         <Eventos id="eventos">
@@ -213,52 +190,26 @@ export default function Home() {
             </button>
           </div>
           <Carousel ref={eventos} {...settings} effect="fade">
-            <div className="slider">
-              <div className="text">
-                <div>
-                  <h4>Aniversários</h4>
-                  <p>
-                    Na Chácara Berté o seu aniversário será comemorado com toda
-                    o significado que ele merece. É além de um simples dia, é o
-                    seu dia. Organizamos aniversários com uma estrutura única da
-                    qual você lembrará sempre desse dia. Também oferecemos […]
-                  </p>
-                  <a className="leia-mais" href="/eventos/aniversarios">
-                    Leia mais
-                  </a>
+            {data_events.map((evento, index) => (
+              <div className="slider" key={index}>
+                <div className="text">
+                  <div>
+                    <h4>{evento.title.rendered}</h4>
+                    <p>{evento.acf.resumo}</p>
+                    <a className="leia-mais" href="/eventos/aniversarios">
+                      Leia mais
+                    </a>
+                  </div>
+                </div>
+                <div className="img">
+                  <Image
+                    src={evento.acf.imagem_de_banner.sizes.large}
+                    width={evento.acf.imagem_de_banner.sizes["large-width"]}
+                    height={evento.acf.imagem_de_banner.sizes["large-height"]}
+                  />
                 </div>
               </div>
-              <div className="img">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-            </div>
-            <div className="slider">
-              <div className="text">
-                <div>
-                  <h4>Aniversários</h4>
-                  <p>
-                    Na Chácara Berté o seu aniversário será comemorado com toda
-                    o significado que ele merece. É além de um simples dia, é o
-                    seu dia. Organizamos aniversários com uma estrutura única da
-                    qual você lembrará sempre desse dia. Também oferecemos […]
-                  </p>
-                  <a className="leia-mais" href="/eventos/aniversário">
-                    Leia mais
-                  </a>
-                </div>
-              </div>
-              <div className="img">
-                <Image
-                  src="/assets/img/sobre1.jpg"
-                  width="1600"
-                  height="1068"
-                />
-              </div>
-            </div>
+            ))}
           </Carousel>
         </Eventos>
       </Container>
